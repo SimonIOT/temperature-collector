@@ -4,8 +4,8 @@
 #include <DallasTemperature.h>
 #include <DHT.h>
 
-//#define DALLAS_ENABLED
-#define DHT_ENABLED
+#define DALLAS_ENABLED
+//#define DHT_ENABLED
 
 #define DEBUG
 #define DHTTYPE DHT22
@@ -30,7 +30,7 @@ float h, t;
 
 const char* ssid = "LabZone";
 const char* password = "83032105150";
-const char* place = "goscinny";
+const char* place = "sypialnia";
 
 String functionAddress = "http://starzaki.eu.org/~wedrowki/iot/data_collector.php";
 const int port = 80;
@@ -130,13 +130,13 @@ void loop() {
 
     /////////// TEMPERATURE ////////////////////////
     data = String("?place=") + place + "&type=temperature&value=" + String(t);
-    sendDataToStarzaki(functionAddress, data);
+    //sendDataToStarzaki(functionAddress, data);
 
     ///////////////// NAPIECIE /////////////////////
     float vcc = ESP.getVcc() / 1000.0;
     data = String("?place=") + place + "&type=vcc&value=" + String(vcc);
     //send vcc
-    sendDataToStarzaki(functionAddress, data);
+    //sendDataToStarzaki(functionAddress, data);
   }
 
 

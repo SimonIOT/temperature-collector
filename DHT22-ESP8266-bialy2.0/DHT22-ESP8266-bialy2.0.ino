@@ -4,15 +4,29 @@
 #include <DallasTemperature.h>
 #include <DHT.h>
 
+/*
+static const uint8_t D0   = 16;
+static const uint8_t D1   = 5;
+static const uint8_t D2   = 4;
+static const uint8_t D3   = 0;
+static const uint8_t D4   = 2;
+static const uint8_t D5   = 14;
+static const uint8_t D6   = 12;
+static const uint8_t D7   = 13;
+static const uint8_t D8   = 15;
+static const uint8_t D9   = 3;
+static const uint8_t D10  = 1;
+*/
 #define DALLAS_ENABLED
 //#define DHT_ENABLED
 
 //#define DEBUG
-#define DHTTYPE DHT22
-#define DHTPIN  D5
-#define ONE_WIRE_BUS D4
+#define DHTTYPE DHT11
+#define DHTPIN  4
+#define ONE_WIRE_BUS 4
 
-DeviceAddress Temp1 = { 0x28, 0x32, 0xC7, 0xDB, 0x06, 0x00, 0x00, 0xAA };
+
+DeviceAddress Temp1 = { 0x28, 0x32, 0xC7, 0xDB, 0x06, 0x00, 0x00, 0xAB };
 
 #ifdef DALLAS_ENABLED
   OneWire oneWire(ONE_WIRE_BUS);
@@ -30,7 +44,7 @@ float h, t;
 
 const char* ssid = "LabZone";
 const char* password = "83032105150";
-const char* place = "sypialnia";
+const char* place = "goscinny";
 
 String functionAddress = "http://starzaki.eu.org/~wedrowki/iot/data_collector.php";
 const int port = 80;
@@ -38,7 +52,7 @@ const int port = 80;
 long previousMillis = 0;
 long currentMillis = 0;
 
-long sendInterval = 300 * 1000; // SENDING INTERVAL
+long sendInterval = 30 * 1000; // SENDING INTERVAL
 
 
 //Arduino IDE: Board NodeMCU 0.9 (ESP-12 Module), CPU frequency: 80MHz
@@ -125,18 +139,18 @@ void loop() {
     }
     //////////// HUMIDITY //////////////////////////
     data = String("?place=") + place + "&type=humidity&value=" + String(h);
-    sendDataToStarzaki(functionAddress, data);
+    //sendDataToStarzaki(functionAddress, data);
 #endif
 
     /////////// TEMPERATURE ////////////////////////
     data = String("?place=") + place + "&type=temperature&value=" + String(t);
-    sendDataToStarzaki(functionAddress, data);
+    //sendDataToStarzaki(functionAddress, data);
 
     ///////////////// NAPIECIE /////////////////////
     float vcc = ESP.getVcc() / 1000.0;
     data = String("?place=") + place + "&type=vcc&value=" + String(vcc);
     //send vcc
-    sendDataToStarzaki(functionAddress, data);
+    //sendDataToStarzaki(functionAddress, data);
   }
 
 

@@ -9,10 +9,10 @@
 
 //#define DEBUG
 #define DHTTYPE DHT22
-#define DHTPIN  D5
-#define ONE_WIRE_BUS D4
+#define DHTPIN  D2
+#define ONE_WIRE_BUS D2
 
-DeviceAddress Temp1 = { 0x28, 0x32, 0xC7, 0xDB, 0x06, 0x00, 0x00, 0xAA };
+DeviceAddress Temp1 = { 0x10, 0x8A, 0xED, 0x0A, 0x03, 0x08, 0x00, 0x61 };
 
 #ifdef DALLAS_ENABLED
 OneWire oneWire(ONE_WIRE_BUS);
@@ -30,7 +30,7 @@ float h, t;
 
 const char* ssid = "LabZone";
 const char* password = "83032105150";
-const char* place = "sypialnia";
+const char* place = "gabinet";
 
 String functionAddress = "http://starzaki.eu.org/~wedrowki/iot/data_collector.php";
 const int port = 80;
