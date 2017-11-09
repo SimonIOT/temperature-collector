@@ -38,7 +38,7 @@ const int port = 80;
 long previousMillis = 0;
 long currentMillis = 0;
 
-long sendInterval = 30 * 1000; // SENDING INTERVAL
+long sendInterval = 300 * 1000; // SENDING INTERVAL
 
 
 //Arduino IDE: Board NodeMCU 0.9 (ESP-12 Module), CPU frequency: 80MHz
